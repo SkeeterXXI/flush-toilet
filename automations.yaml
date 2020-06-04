@@ -1,0 +1,30 @@
+# automations for servo and notification of motion detector
+
+- id: '1590955521468'
+  alias: Write Servo Value to ESP
+  trigger:
+    platform: state
+    entity_id: input_number.servo_control
+  action:
+  - service: esphome.flush_control_servo
+    data_template:
+      level: '{{ trigger.to_state.state | int }}'
+      
+- id: '1591029884000'
+  alias: 'Flush: Motion Detected'
+  description: ''
+  trigger:
+  - device_id: 8ca8f1a8fce04d4ab0d3199bdd7e4fde
+    domain: binary_sensor
+    entity_id: binary_sensor.pir_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+    platform: device
+    type: no_motion
+  condition: []
+  action:
+  - data:
+      message: Motion Detected
+    service: notify.mobile_app_skeeter_s_pixel
