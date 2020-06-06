@@ -1,5 +1,5 @@
 # flush
-ESP8266 servo controlled flush with PIR sensor
-Completed in HomeAssistant using ESPHome Dashboard
+Servo controlled flush with PIR sensor on ESP8266 NodeMCU
+Completed in HomeAssistant using ESPHome
 
 
