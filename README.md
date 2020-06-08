@@ -8,3 +8,5 @@ Including automation for notification to my mobile after 5 seconds of movement d
 This is so I can flush the toilet remotely for my cat who is trained to use the toilet.
 
 He likes a clean toilet, and when I am away I needed a method of flushing the toilet for him.
+
+Photos coming later....
