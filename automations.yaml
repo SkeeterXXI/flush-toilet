@@ -1,15 +1,5 @@
-# automations for servo and notification of motion detector
-
-- id: '1590955521468'
-  alias: Write Servo Value to ESP
-  trigger:
-    platform: state
-    entity_id: input_number.servo_control
-  action:
-  - service: esphome.flush_control_servo
-    data_template:
-      level: '{{ trigger.to_state.state | int }}'
-      
+# automations for notification of motion detector
+ 
 - id: '1591029884000'
   alias: 'Flush: Motion Detected'
   description: ''
@@ -20,9 +10,9 @@
     for:
       hours: 0
       minutes: 0
-      seconds: 30
+      seconds: 5
     platform: device
-    type: no_motion
+    type: motion
   condition: []
   action:
   - data:
