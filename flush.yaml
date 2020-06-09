@@ -57,8 +57,11 @@ switch:
     turn_on_action:
     - output.set_level:
         id: pwm_output
-        level: 10%
+        level: 12%
     - delay: 1000ms
     - output.set_level:
         id: pwm_output
         level: 3.0%
+        
+  - platform: restart
+    name: "Toilet Flush MCU Restart"
