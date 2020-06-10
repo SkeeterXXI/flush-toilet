@@ -48,6 +48,7 @@ binary_sensor:
         - output.turn_on: led
     on_release:
       then:
+        - delay: 30s  # night light
         - output.turn_off: led
 
 switch:
