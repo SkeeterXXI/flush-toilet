@@ -11,25 +11,30 @@ wifi:
 
 captive_portal:
 
+debug:
+
 # Enable logging
 logger:
+  level: debug
 
 # Enable Home Assistant API
 api:
-            
+
 ota:
 
-#LED
 output:
+# LED
   - platform: gpio
     pin: D1
     id: led
-#Servo    
+    
+# Servo Output
   - platform: esp8266_pwm
     id: pwm_output
     pin: D8
     frequency: 50 Hz
 
+# Servo Params
 servo:
   - id: my_servo
     output: pwm_output
@@ -38,6 +43,7 @@ servo:
     max_level: 12.0%
     restore: false
 
+# Motion Sensor
 binary_sensor:
   - platform: gpio
     pin: D7
@@ -47,7 +53,7 @@ binary_sensor:
     on_press:
       - output.turn_on: led
       - logger.log: "LED is on."
-# night light
+# Night Light
   - platform: template
     id: led_timer
     lambda: 'return id(pir_motion).state;'
@@ -57,6 +63,7 @@ binary_sensor:
       - output.turn_off: led
       - logger.log: "LED is off."
 
+# Flush Buttons
 switch:
   - platform: template
     icon: "mdi:toilet"
@@ -69,6 +76,6 @@ switch:
     - output.set_level:
         id: pwm_output
         level: 3.0%
-        
+
   - platform: restart
     name: "Toilet Flush MCU Reset"
