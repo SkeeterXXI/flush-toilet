@@ -43,13 +43,19 @@ binary_sensor:
     pin: D7
     name: "PIR Sensor"
     device_class: motion
+    id: pir_motion
     on_press:
-      then:
-        - output.turn_on: led
+      - output.turn_on: led
+      - logger.log: "LED is on."
+# night light
+  - platform: template
+    id: led_timer
+    lambda: 'return id(pir_motion).state;'
+    filters:
+      - delayed_off: 30s
     on_release:
-      then:
-        - delay: 30s  # night light
-        - output.turn_off: led
+      - output.turn_off: led
+      - logger.log: "LED is off."
 
 switch:
   - platform: template
@@ -65,4 +71,4 @@ switch:
         level: 3.0%
         
   - platform: restart
-    name: "Toilet Flush MCU Restart"
+    name: "Toilet Flush MCU Reset"
